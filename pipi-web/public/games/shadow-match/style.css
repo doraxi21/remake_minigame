@@ -1,0 +1,221 @@
+.shadow-match {
+  --shadow-token-size: 132px;
+  --shadow-slot-size: 148px;
+}
+
+.shadow-stage {
+  display: grid;
+  gap: 18px;
+}
+
+.shadow-board {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.shadow-card {
+  min-height: 300px;
+  border: 4px solid #d9ecff;
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.68), rgba(255, 255, 255, 0.9)),
+    var(--card-bg, #f5fbff);
+  box-shadow: 0 9px 0 #c8def8;
+  display: grid;
+  grid-template-rows: minmax(116px, 1fr) var(--shadow-slot-size) auto;
+  gap: 10px;
+  align-items: center;
+  padding: 12px;
+  transition: transform 150ms ease, border-color 150ms ease, background 150ms ease;
+}
+
+.shadow-card.is-hovered {
+  border-color: var(--pipi-orange);
+  transform: translateY(-2px);
+}
+
+.shadow-card.has-correct {
+  border-color: var(--good);
+  background: #edfff6;
+}
+
+.shadow-card.has-wrong {
+  border-color: var(--bad);
+  background: #fff2f2;
+}
+
+.shadow-button {
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  display: grid;
+  min-height: 110px;
+  place-items: center;
+  padding: 6px;
+}
+
+.shadow-silhouette,
+.shadow-image {
+  width: min(94%, 150px);
+  height: 112px;
+  display: grid;
+  place-items: center;
+}
+
+.shadow-silhouette .shadow-source,
+.shadow-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: brightness(0) opacity(0.34);
+}
+
+.shadow-silhouette .emoji {
+  color: #17305f;
+  filter: grayscale(1) brightness(0.15) opacity(0.32);
+  font-size: 5rem;
+}
+
+.shadow-slot {
+  position: relative;
+  width: var(--shadow-slot-size);
+  height: var(--shadow-slot-size);
+  border: 3px dashed rgba(23, 48, 95, 0.34);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.88);
+  display: grid;
+  place-items: center;
+  justify-self: center;
+  padding: 6px;
+  overflow: hidden;
+}
+
+.shadow-slot.has-picture .slot-placeholder {
+  display: none;
+}
+
+.slot-placeholder {
+  color: rgba(23, 48, 95, 0.38);
+  font-size: 0.9rem;
+  font-weight: 900;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.shadow-card > strong {
+  color: #5c6f8c;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.picture-tray {
+  min-height: 170px;
+  border: 3px dashed rgba(23, 48, 95, 0.28);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.78);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+}
+
+.picture-token {
+  width: var(--shadow-token-size);
+  min-height: 148px;
+  border: 4px solid #d9ecff;
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.22)),
+    var(--token-bg, #ffffff);
+  box-shadow: 0 8px 0 #c8def8;
+  color: var(--ink);
+  cursor: grab;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 6px;
+  place-items: center;
+  padding: 10px;
+  transition: transform 140ms ease, border-color 140ms ease, box-shadow 140ms ease;
+  touch-action: none;
+  user-select: none;
+  position: relative;
+  z-index: 1;
+}
+
+.picture-token:hover {
+  transform: translateY(-3px);
+}
+
+.picture-token:active,
+.picture-token.is-dragging {
+  cursor: grabbing;
+}
+
+.picture-token .item-image {
+  width: 100%;
+  height: 90px;
+  object-fit: contain;
+}
+
+.picture-token .emoji {
+  font-size: 4.2rem;
+}
+
+.picture-token span {
+  font-size: 1rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.shadow-slot .picture-token {
+  width: 100%;
+  min-height: 100%;
+  box-shadow: none;
+}
+
+.shadow-slot .picture-token .item-image {
+  height: 76px;
+}
+
+.picture-token.is-dragging {
+  pointer-events: none;
+  transform: none;
+}
+
+.picture-token.is-correct {
+  border-color: var(--good);
+  background: #edfff6;
+}
+
+.picture-token.is-wrong {
+  border-color: var(--bad);
+  background: #fff2f2;
+}
+
+.shadow-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.shadow-actions .rematch-btn[hidden] {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  .shadow-board {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .shadow-board {
+    grid-template-columns: 1fr;
+  }
+}

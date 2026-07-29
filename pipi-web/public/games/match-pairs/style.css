@@ -1,0 +1,50 @@
+.match-pairs .match-layout {
+  display: grid;
+  gap: 14px;
+}
+
+.match-pairs .match-column {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.match-pairs .pair-card {
+  min-height: 112px;
+  border-color: #d9ecff;
+  background: var(--card);
+  box-shadow: 0 8px 0 #c8def8;
+}
+
+.match-pairs .pair-card .emoji {
+  font-size: clamp(2.6rem, 5vw, 4rem);
+}
+
+.match-pairs .pair-card .label {
+  font-size: clamp(1.25rem, 2.4vw, 1.8rem);
+}
+
+.match-pairs .pair-card:hover,
+.match-pairs .pair-card.selected {
+  border-color: var(--pipi-orange);
+}
+
+.match-pairs .pair-card.correct.matched-color {
+  border-color: var(--pair-color);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.86)),
+    var(--pair-bg);
+  box-shadow: 0 10px 0 color-mix(in srgb, var(--pair-color) 24%, #c8def8);
+}
+
+.match-pairs .pair-card.wrong {
+  border-color: var(--bad);
+  background: #fff1f1;
+  box-shadow: 0 10px 0 rgba(255, 107, 107, 0.2);
+}
+
+@media (max-width: 700px) {
+  .match-pairs .match-column {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

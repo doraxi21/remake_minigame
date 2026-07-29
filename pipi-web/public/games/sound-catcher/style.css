@@ -1,0 +1,125 @@
+.sound-catcher .catcher-field {
+  position: relative;
+  min-height: 390px;
+  overflow: hidden;
+  border: 4px solid #d9ecff;
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(226, 248, 255, 0.86), rgba(255, 248, 220, 0.82)),
+    #f6fdff;
+  box-shadow: inset 0 0 0 4px rgba(255, 255, 255, 0.54);
+}
+
+.sound-catcher .catcher-field::before {
+  content: "";
+  position: absolute;
+  inset: 24px;
+  border: 3px dashed rgba(23, 48, 95, 0.18);
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+.sound-catcher .catch-token {
+  position: absolute;
+  left: -170px;
+  top: var(--lane-top);
+  width: 150px;
+  min-height: 112px;
+  border: 4px solid #d9ecff;
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--ink);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  gap: 4px;
+  padding: 12px;
+  font-weight: 900;
+  z-index: 1;
+  box-shadow: 0 9px 0 #c8def8;
+  animation: catcher-float var(--speed) linear var(--delay) infinite;
+  transform: translateY(-50%);
+  transition: transform 140ms ease, border-color 140ms ease, background 140ms ease;
+}
+
+.sound-catcher .catch-token:hover {
+  transform: translateY(calc(-50% - 4px)) scale(1.03);
+}
+
+.sound-catcher .catch-token.is-target {
+  z-index: 2;
+}
+
+.sound-catcher .catch-token:disabled {
+  cursor: default;
+}
+
+.sound-catcher .catch-token .emoji {
+  font-size: 3.4rem;
+  line-height: 1;
+}
+
+.sound-catcher .catch-token .item-image {
+  width: 92px;
+  max-height: 72px;
+}
+
+.sound-catcher .catch-token .label {
+  font-size: 1.25rem;
+}
+
+.sound-catcher .catch-token.is-correct {
+  border-color: var(--good);
+  background: #eafff4;
+  box-shadow: 0 9px 0 rgba(32, 184, 111, 0.25);
+  animation-play-state: paused;
+  z-index: 6;
+}
+
+.sound-catcher .catch-token.is-wrong {
+  border-color: var(--bad);
+  background: #fff1f1;
+  box-shadow: 0 9px 0 rgba(255, 107, 107, 0.25);
+  animation: catcher-shake 220ms ease 2;
+}
+
+.sound-catcher .catcher-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 18px;
+}
+
+.sound-catcher .rematch-btn[hidden] {
+  display: none;
+}
+
+@keyframes catcher-float {
+  from {
+    left: -170px;
+  }
+
+  to {
+    left: calc(100% + 170px);
+  }
+}
+
+@keyframes catcher-shake {
+  0%, 100% { transform: translate(0, -50%); }
+  35% { transform: translate(-8px, -50%); }
+  70% { transform: translate(8px, -50%); }
+}
+
+@media (max-width: 700px) {
+  .sound-catcher .catcher-field {
+    min-height: 360px;
+  }
+
+  .sound-catcher .catch-token {
+    width: 126px;
+    min-height: 96px;
+  }
+
+  .sound-catcher .catch-token .emoji {
+    font-size: 2.6rem;
+  }
+}

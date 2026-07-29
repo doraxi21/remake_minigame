@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Listen & Tap - Pipi</title>
+    <link rel="stylesheet" href="../shared/base.css">
+    <link rel="stylesheet" href="../shared/pipi.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <main class="shell game-shell game-listen-tap">
+      <nav class="topbar">
+        <a class="brand" href="../index.html">
+          <img src="../assets/pipi/logo.gif" alt="Pipi">
+          Pipi Mini Games
+        </a>
+        <a class="home-link" href="../index.html">Trang chọn game</a>
+      </nav>
+
+      <section class="game-board">
+        <aside class="pipi-panel" data-pipi-panel>
+          <button class="pipi-button pipi-frame" data-pipi-button data-pipi-frame type="button" aria-label="Chạm Pipi">
+            <img class="pipi-media" data-pipi-img src="../assets/png/hello.gif" alt="Pipi">
+          </button>
+          <p class="speech" data-pipi-speech>Nghe Pipi đọc rồi chọn hình đúng nhé.</p>
+        </aside>
+
+        <section class="play-panel" data-game-root></section>
+      </section>
+    </main>
+    <script src="../shared/audio.js"></script>
+    <script src="../shared/pipi.js"></script>
+    <script src="../shared/utils.js"></script>
+    <script src="../shared/game-runtime.js"></script>
+    <script src="../shared/content.js"></script>
+    <script src="game.js"></script>
+    <script>
+      const pipi = PipiMascot.create({ root: document, assetBase: "../" });
+      PipiGames.listenTap.mount(document.querySelector("[data-game-root]"), { chooseModeOnStart: true }, { pipi });
+    </script>
+  </body>
+</html>

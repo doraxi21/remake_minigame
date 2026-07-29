@@ -1,0 +1,119 @@
+.treasure-hunt .hunt-scene {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border: 4px solid #d9ecff;
+  border-radius: 8px;
+  background: #e9f8ff;
+  box-shadow: 0 8px 0 #c8def8;
+  overflow: hidden;
+}
+
+.treasure-hunt .hunt-bg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  user-select: none;
+}
+
+.treasure-hunt .hunt-hotspots {
+  position: absolute;
+  inset: 0;
+}
+
+.treasure-hunt .hunt-hotspot {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: max(72px, var(--size));
+  aspect-ratio: 1;
+  border: 4px solid rgba(255, 255, 255, 0.88);
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.24)),
+    rgba(255, 248, 214, 0.74);
+  box-shadow: 0 8px 0 rgba(23, 48, 95, 0.18);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  padding: 8px;
+  transform: translate(-50%, -50%);
+  transition: transform 140ms ease, border-color 140ms ease, background 140ms ease, opacity 140ms ease;
+}
+
+.treasure-hunt .hunt-hotspot:hover {
+  transform: translate(-50%, -54%);
+}
+
+.treasure-hunt .hunt-hotspot.is-current {
+  animation: huntFloat 1.8s ease-in-out infinite;
+}
+
+.treasure-hunt .hunt-hotspot.is-found {
+  border-color: var(--good);
+  background: #eafff4;
+}
+
+.treasure-hunt .hunt-hotspot.is-correct {
+  animation: huntPop 340ms ease;
+}
+
+.treasure-hunt .hunt-hotspot.is-wrong {
+  border-color: var(--bad);
+  background: #fff1f1;
+  animation: huntShake 280ms ease;
+}
+
+.treasure-hunt .hunt-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.treasure-hunt .hunt-emoji {
+  font-size: clamp(2.6rem, 5vw, 5rem);
+  pointer-events: none;
+}
+
+.treasure-hunt .hunt-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.treasure-hunt .rematch-btn[hidden] {
+  display: none;
+}
+
+@keyframes huntFloat {
+  0%, 100% {
+    box-shadow: 0 8px 0 rgba(23, 48, 95, 0.18);
+  }
+  50% {
+    box-shadow: 0 8px 0 rgba(23, 48, 95, 0.18), 0 0 0 8px rgba(255, 157, 53, 0.18);
+  }
+}
+
+@keyframes huntPop {
+  50% {
+    transform: translate(-50%, -50%) scale(1.12);
+  }
+}
+
+@keyframes huntShake {
+  25% {
+    transform: translate(calc(-50% - 6px), -50%);
+  }
+  75% {
+    transform: translate(calc(-50% + 6px), -50%);
+  }
+}
+
+@media (max-width: 800px) {
+  .treasure-hunt .hunt-hotspot {
+    width: max(56px, var(--size));
+  }
+}

@@ -1,0 +1,251 @@
+.lesson-shell {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) 92px;
+  background: #121820;
+  overflow: hidden;
+}
+
+.lesson-stage {
+  display: block;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.lesson-main {
+  height: 100%;
+  padding: 26px;
+  background:
+    linear-gradient(rgba(204, 239, 255, 0.08), rgba(216, 242, 166, 0.1)),
+    url("../assets/png/intro.png") center / cover no-repeat;
+}
+
+.lesson-main.is-outro-main {
+  padding: 0;
+}
+
+.slide-frame {
+  height: 100%;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: var(--pipi-panel-width) 1fr;
+  gap: 22px;
+  align-items: start;
+}
+
+.slide-frame > .pipi-panel {
+  width: var(--pipi-panel-width);
+}
+
+.slide-frame.is-cover,
+.slide-frame.is-outro {
+  grid-template-columns: 1fr;
+}
+
+.slide-frame.is-cover .pipi-panel,
+.slide-frame.is-outro .pipi-panel {
+  display: none;
+}
+
+.activity-card {
+  padding: 18px;
+  height: 100%;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.activity-title {
+  margin-bottom: 10px;
+}
+
+.activity-title h1 {
+  font-size: clamp(2rem, 3.8vw, 3.2rem);
+}
+
+.toc {
+  position: fixed;
+  right: 18px;
+  top: 18px;
+  bottom: 92px;
+  width: min(360px, calc(100vw - 36px));
+  z-index: 30;
+  background: rgba(18, 24, 32, 0.9);
+  color: white;
+  padding: 18px;
+  overflow-y: auto;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.3);
+  transform: translateX(calc(100% + 28px));
+  transition: transform 180ms ease;
+}
+
+.toc.is-open {
+  transform: translateX(0);
+}
+
+.toc-close {
+  position: sticky;
+  top: 0;
+  float: right;
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--pipi-orange);
+  color: white;
+  cursor: pointer;
+  font-size: 1.4rem;
+  font-weight: 900;
+}
+
+.toc h2 {
+  margin: 0 0 14px;
+  font-size: 1.4rem;
+}
+
+.toc-home {
+  display: block;
+  margin: 0 0 14px;
+  border-radius: 999px;
+  background: var(--pipi-blue);
+  color: white;
+  padding: 12px 16px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 900;
+  box-shadow: 0 7px 0 #183ca6;
+}
+
+.toc-list {
+  display: grid;
+  gap: 12px;
+}
+
+.toc-item {
+  width: 100%;
+  border: 3px solid transparent;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
+  padding: 12px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.toc-item.is-active {
+  border-color: var(--pipi-orange);
+  background: rgba(255, 148, 31, 0.2);
+}
+
+.toc-item.is-done::after {
+  content: "Done";
+  float: right;
+  color: #9dffcd;
+  font-weight: 900;
+}
+
+.toc-item strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.lesson-footer {
+  height: 92px;
+  min-height: 92px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px 24px;
+  background: #0d1117;
+  color: white;
+}
+
+.footer-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.progress-text {
+  font-weight: 900;
+  font-size: 1.1rem;
+}
+
+.cover-slide {
+  height: 100%;
+  min-height: 0;
+  position: relative;
+  display: block;
+  text-align: center;
+}
+
+.cover-slide h1 {
+  color: #5d9cdc;
+  font-size: clamp(3.4rem, 10vw, 7rem);
+}
+
+.cover-slide p {
+  color: var(--muted);
+  font-size: 1.3rem;
+  font-weight: 900;
+}
+
+.cover-start,
+.grade-picker {
+  position: absolute;
+  left: 50%;
+  top: 78%;
+  transform: translateX(-50%);
+}
+
+.cover-start .primary-btn,
+.grade-picker .primary-btn {
+  min-width: 170px;
+  padding: 19px 34px;
+  font-size: 1.22rem;
+}
+
+.grade-picker {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: min(720px, calc(100% - 40px));
+}
+
+.outro-slide {
+  height: 100%;
+  min-height: 0;
+  display: block;
+  text-align: center;
+  background:
+    #dff8ff
+    url("../assets/png/outro.png") center center / cover no-repeat;
+}
+
+.outro-content {
+  display: none;
+}
+
+@media (max-width: 1050px) {
+  .slide-frame {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+}
+
+@media (max-width: 620px) {
+  .lesson-main {
+    padding: 14px;
+  }
+
+  .lesson-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .footer-actions {
+    justify-content: space-between;
+  }
+}

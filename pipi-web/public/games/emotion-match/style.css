@@ -1,0 +1,1559 @@
+/* =========================================================
+   BACKGROUND TOÀN TRANG
+========================================================= */
+
+.game-emotion-match {
+  min-height: 100vh;
+
+  background:
+    linear-gradient(
+      rgba(226, 249, 255, 0.14),
+      rgba(255, 250, 224, 0.12)
+    ),
+    url("../assets/background/back_ground1.png")
+      center center / cover no-repeat fixed;
+}
+
+
+/* =========================================================
+   KHUNG GAME
+========================================================= */
+
+.game-emotion-match .game-board {
+  align-items: stretch;
+}
+
+.game-emotion-match .play-panel {
+  min-width: 0;
+  padding: 0;
+  overflow: hidden;
+
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   EMOTION MATCH
+========================================================= */
+
+.emotion-match {
+  min-height: 680px;
+  display: grid;
+  grid-template-rows: auto auto minmax(280px, 1fr) auto auto;
+  gap: 14px;
+
+  padding: 18px;
+
+  border: 4px solid rgba(210, 231, 251, 0.94);
+  border-radius: 10px;
+
+  color: var(--ink);
+
+  background: rgba(255, 255, 255, 0.14);
+
+  box-shadow:
+    0 10px 0 rgba(104, 157, 213, 0.18),
+    0 20px 38px rgba(49, 97, 139, 0.12);
+
+  backdrop-filter: blur(1px);
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.emotion-match .emotion-match__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+
+  padding: 16px 20px;
+
+  border: 4px solid #d9ecff;
+  border-radius: 8px;
+
+  background: rgba(255, 255, 255, 0.94);
+
+  box-shadow: 0 8px 0 #c8def8;
+}
+
+.emotion-match .emotion-match__eyebrow {
+  margin: 0 0 4px;
+
+  color: var(--pipi-orange);
+
+  font-size: 0.95rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.emotion-match .emotion-match__title {
+  margin: 0;
+
+  color: var(--ink);
+
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1;
+  font-weight: 900;
+}
+
+.emotion-match .emotion-match__instruction {
+  margin: 8px 0 0;
+
+  color: #587095;
+
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.emotion-match .emotion-match__sound {
+  flex: 0 0 auto;
+
+  width: 58px;
+  height: 58px;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: #e2f6ff;
+
+  cursor: pointer;
+
+  font-size: 1.7rem;
+
+  box-shadow: 0 7px 0 #9ed7ef;
+
+  transition:
+    transform 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.emotion-match .emotion-match__sound:hover {
+  transform: translateY(-3px);
+}
+
+.emotion-match .emotion-match__sound:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 #9ed7ef;
+}
+
+
+/* =========================================================
+   ĐIỂM VÀ TIẾN TRÌNH
+========================================================= */
+
+.emotion-match .emotion-match__hud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.emotion-match .emotion-match__hud span {
+  padding: 8px 15px;
+
+  border: 3px solid #d9ecff;
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.94);
+
+  color: var(--ink);
+
+  font-size: 1rem;
+  font-weight: 900;
+
+  box-shadow: 0 5px 0 #c8def8;
+}
+
+
+/* =========================================================
+   NHÂN VẬT
+========================================================= */
+
+.emotion-match .emotion-match__scene {
+  min-height: 0;
+
+  display: grid;
+  place-items: center;
+}
+
+.emotion-match .emotion-match__character-card {
+  position: relative;
+
+  width: min(470px, 95%);
+  min-height: 300px;
+
+  display: grid;
+  place-items: end center;
+}
+
+.emotion-match .emotion-match__character {
+  height: clamp(220px, 34vh, 360px);
+
+  display: grid;
+  place-items: end center;
+
+  filter: drop-shadow(
+    0 16px 12px rgba(35, 83, 110, 0.2)
+  );
+}
+
+.emotion-match .emotion-match__character-image {
+  display: block;
+
+  width: auto;
+  max-width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: bottom center;
+
+  user-select: none;
+}
+
+.emotion-match .emotion-match__fallback {
+  width: 220px;
+  aspect-ratio: 1;
+
+  display: grid;
+  place-items: center;
+
+  border: 5px solid rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.75);
+
+  font-size: 8rem;
+
+  box-shadow:
+    0 10px 0 rgba(137, 182, 220, 0.18),
+    0 18px 30px rgba(39, 87, 118, 0.14);
+}
+
+
+/* =========================================================
+   BONG BÓNG THOẠI
+========================================================= */
+
+.emotion-match .emotion-match__bubble {
+  position: absolute;
+  top: 4px;
+  right: -10px;
+
+  max-width: min(300px, 72%);
+
+  padding: 14px 18px;
+
+  border: 4px solid #d9ecff;
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: var(--ink);
+
+  font-size: 1rem;
+  font-weight: 900;
+  text-align: center;
+
+  box-shadow: 0 8px 0 #c8def8;
+}
+
+.emotion-match .emotion-match__bubble::after {
+  content: "";
+
+  position: absolute;
+  left: 34px;
+  bottom: -17px;
+
+  border: 10px solid transparent;
+  border-top-color: #ffffff;
+}
+
+.emotion-match .emotion-match__character-name {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+
+  transform: translateX(-50%);
+
+  margin: 0;
+  padding: 7px 17px;
+
+  border: 3px solid #d9ecff;
+  border-radius: 999px;
+
+  background: #ffffff;
+
+  color: var(--ink);
+
+  font-weight: 900;
+
+  box-shadow: 0 5px 0 #c8def8;
+}
+
+
+/* =========================================================
+   ĐÁP ÁN
+========================================================= */
+
+.emotion-match .emotion-match__choices {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(135px, 1fr));
+  gap: 13px;
+}
+
+.emotion-match .emotion-match__choice {
+  min-height: 84px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 14px;
+
+  border: 4px solid #d9ecff;
+  border-radius: 8px;
+
+  background: rgba(255, 255, 255, 0.96);
+
+  color: #c62d25;
+
+  cursor: pointer;
+
+  font: inherit;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-weight: 900;
+
+  box-shadow: 0 8px 0 #c8def8;
+
+  transition:
+    transform 150ms ease,
+    border-color 150ms ease,
+    background 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.emotion-match .emotion-match__choice:hover:not(:disabled) {
+  transform: translateY(-3px);
+  border-color: var(--pipi-orange);
+}
+
+.emotion-match .emotion-match__choice:active:not(:disabled) {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 #c8def8;
+}
+
+.emotion-match .emotion-match__choice:disabled {
+  cursor: default;
+}
+
+.emotion-match .emotion-match__choice-emoji {
+  font-size: 1.6em;
+}
+
+
+/* =========================================================
+   ĐÚNG / SAI
+========================================================= */
+
+.emotion-match .emotion-match__choice.is-correct {
+  border-color: var(--good);
+  background: #eafff4;
+  color: #087544;
+
+  box-shadow: 0 8px 0 rgba(32, 184, 111, 0.2);
+
+  animation: emotionCorrect 420ms ease both;
+}
+
+.emotion-match .emotion-match__choice.is-wrong {
+  border-color: var(--bad);
+  background: #fff1f1;
+  color: #c43b3b;
+
+  box-shadow: 0 8px 0 rgba(196, 59, 59, 0.18);
+
+  animation: emotionShake 260ms ease both;
+}
+
+.emotion-match .emotion-match__feedback {
+  min-height: 30px;
+
+  text-align: center;
+
+  font-size: 1.1rem;
+  font-weight: 900;
+}
+
+.emotion-match .emotion-match__feedback.is-success {
+  color: var(--good);
+}
+
+.emotion-match .emotion-match__feedback.is-error {
+  color: var(--bad);
+}
+
+
+/* =========================================================
+   LỖI TẢI GAME
+========================================================= */
+
+.emotion-load-error {
+  min-height: 300px;
+
+  display: grid;
+  place-content: center;
+  gap: 8px;
+
+  padding: 24px;
+
+  border: 4px solid rgba(196, 59, 59, 0.32);
+  border-radius: 8px;
+
+  background: #fff1f1;
+
+  color: #c43b3b;
+
+  text-align: center;
+
+  box-shadow: 0 8px 0 rgba(196, 59, 59, 0.18);
+}
+
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+@keyframes emotionShake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  35% {
+    transform: translateX(-6px);
+  }
+
+  70% {
+    transform: translateX(6px);
+  }
+}
+
+@keyframes emotionCorrect {
+  0% {
+    transform: scale(1);
+  }
+
+  45% {
+    transform: scale(1.06);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1000px) {
+  .emotion-match .emotion-match__choices {
+    grid-template-columns: repeat(2, minmax(140px, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .game-emotion-match {
+    background-attachment: scroll;
+  }
+
+  .emotion-match {
+    min-height: auto;
+    padding: 12px;
+  }
+
+  .emotion-match .emotion-match__header {
+    align-items: flex-start;
+  }
+
+  .emotion-match .emotion-match__title {
+    font-size: 2rem;
+  }
+
+  .emotion-match .emotion-match__sound {
+    width: 50px;
+    height: 50px;
+  }
+
+  .emotion-match .emotion-match__character {
+    height: 245px;
+  }
+
+  .emotion-match .emotion-match__bubble {
+    right: 0;
+    max-width: 76%;
+  }
+
+  .emotion-match .emotion-match__choices {
+    grid-template-columns: 1fr;
+  }
+
+  .emotion-match .emotion-match__choice {
+    min-height: 68px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .emotion-match *,
+  .emotion-match *::before,
+  .emotion-match *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* =========================================================
+   EMOTION MATCH — MỞ RỘNG KHÔNG GIAN CHƠI
+   Chỉ ảnh hưởng game Emotion Match
+========================================================= */
+
+/*
+  Base.css đang giới hạn .shell ở 1120px.
+  Emotion Match cần không gian rộng để đặt nhiều nhân vật.
+*/
+.game-emotion-match.shell {
+  width: min(1320px, calc(100% - 40px));
+  max-width: none;
+  margin: 0 auto;
+  padding-top: 14px;
+  padding-bottom: 20px;
+  justify-content: flex-start;
+}
+
+/*
+  Giữ topbar rộng toàn khung.
+*/
+.game-emotion-match .topbar {
+  width: 100%;
+  margin-bottom: 14px;
+}
+
+/*
+  Không chia cột Pipi + game như base.css nữa.
+  Game chiếm toàn bộ chiều ngang.
+*/
+.game-emotion-match .game-board {
+  position: relative;
+
+  display: block;
+  width: 100%;
+  max-width: 1220px;
+  min-height: min(720px, calc(100dvh - 110px));
+  margin: 0 auto;
+
+  padding-left: 120px;
+}
+
+/*
+  Đưa Pipi ra ngoài phần chơi.
+  Pipi chồng nhẹ lên mép trái nhưng không chiếm một cột riêng.
+*/
+.game-emotion-match .game-board > .pipi-panel {
+  position: absolute;
+  z-index: 10;
+
+  left: -35px;
+  top: 50%;
+
+  width: 185px;
+
+  transform: translateY(-50%);
+}
+
+/*
+  Thu nhỏ khung Pipi để không che nhiều nội dung.
+*/
+.game-emotion-match .pipi-panel .pipi-frame {
+  width: 100%;
+  height: 270px;
+  min-height: 0;
+}
+
+.game-emotion-match .pipi-panel .pipi-media {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center top;
+}
+
+/*
+  Phần lời hướng dẫn bên dưới Pipi.
+*/
+.game-emotion-match .pipi-panel .speech {
+  min-height: 84px;
+  margin: 0;
+  padding: 14px 15px;
+
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+/*
+  Play panel tận dụng toàn bộ chiều ngang còn lại.
+*/
+.game-emotion-match .game-board > .play-panel {
+  width: 100%;
+  min-width: 0;
+  min-height: inherit;
+
+  display: block;
+
+  padding: 0;
+  margin: 0;
+
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+/*
+  Khung Emotion Match phủ kín play panel.
+*/
+.game-emotion-match .emotion-match-host,
+.game-emotion-match .emotion-match {
+  width: 100%;
+  min-width: 0;
+}
+
+/*
+  Giảm khoảng trống bên trong game.
+*/
+.game-emotion-match .emotion-match {
+  min-height: min(720px, calc(100dvh - 120px));
+  padding: 14px 18px 16px;
+  gap: 10px;
+}
+
+/*
+  Header thấp hơn để nhường diện tích dọc cho nhân vật.
+*/
+.game-emotion-match .emotion-match__header {
+  min-height: 104px;
+  padding: 12px 20px;
+}
+
+.game-emotion-match .emotion-match__title {
+  font-size: clamp(2rem, 3.2vw, 3.2rem);
+}
+
+.game-emotion-match .emotion-match__instruction {
+  margin-top: 5px;
+}
+
+/*
+  Thu gọn thanh tiến trình.
+*/
+.game-emotion-match .emotion-match__hud {
+  min-height: 42px;
+}
+
+/*
+  Tăng diện tích trung tâm.
+*/
+.game-emotion-match .emotion-match__scene {
+  min-height: 300px;
+}
+
+/*
+  Sau này khi chuyển sang 4 nhân vật,
+  khu này có thể dùng grid 4 cột.
+*/
+.game-emotion-match .emotion-characters-grid {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(4, minmax(150px, 1fr));
+  gap: 14px;
+
+  align-items: end;
+}
+
+/*
+  Thẻ trả lời nên gọn hơn để vừa một hàng.
+*/
+.game-emotion-match .emotion-match__choices {
+  grid-template-columns: repeat(4, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.game-emotion-match .emotion-match__choice {
+  min-height: 72px;
+  padding: 10px 12px;
+}
+
+/* =========================================================
+   RESPONSIVE CHO KHUNG MỞ RỘNG
+========================================================= */
+
+@media (max-width: 1100px) {
+  .game-emotion-match.shell {
+    width: min(100% - 24px, 1040px);
+  }
+
+  .game-emotion-match .game-board {
+    max-width: 100%;
+    padding-left: 105px;
+  }
+
+  .game-emotion-match .game-board > .pipi-panel {
+    left: -24px;
+    width: 158px;
+  }
+
+  .game-emotion-match .pipi-panel .pipi-frame {
+    height: 210px;
+  }
+
+  .game-emotion-match .pipi-panel .speech {
+    min-height: 76px;
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+
+  .game-emotion-match .emotion-characters-grid {
+    grid-template-columns: repeat(2, minmax(150px, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .game-emotion-match.shell {
+    width: min(100% - 16px, 720px);
+    padding-top: 8px;
+  }
+
+  .game-emotion-match .topbar {
+    margin-bottom: 10px;
+  }
+
+  .game-emotion-match .game-board {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    min-height: auto;
+    padding-left: 0;
+  }
+
+  .game-emotion-match .game-board > .pipi-panel {
+    position: static;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 110px minmax(0, 1fr);
+    transform: none;
+  }
+
+  .game-emotion-match .pipi-panel .pipi-frame {
+    width: 110px;
+    height: 120px;
+    overflow: hidden;
+  }
+
+  .game-emotion-match .pipi-panel .pipi-media {
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .game-emotion-match .pipi-panel .speech {
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    border-top: 4px solid #d9ecff;
+    font-size: 0.9rem;
+  }
+
+  .game-emotion-match .emotion-match {
+    min-height: auto;
+  }
+
+  .game-emotion-match .emotion-characters-grid,
+  .game-emotion-match .emotion-match__choices {
+    grid-template-columns: repeat(2, minmax(120px, 1fr));
+  }
+}
+
+/*
+ * Emotion Match — layout fix
+ * Dán khối này vào CUỐI file CSS hiện tại.
+ *
+ * Fix:
+ * - Nhân vật không còn đè lên đáp án.
+ * - Bong bóng thoại và tên nhân vật luôn nằm trong vùng scene.
+ * - 5 đáp án được chia hàng cân đối.
+ * - Header không bị cắt khi chiều cao cửa sổ nhỏ.
+ */
+
+.game-emotion-match {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.game-emotion-match.shell {
+  /* Không ép toàn bộ game phải vừa đúng một màn hình. */
+  min-height: 100dvh;
+  height: auto;
+  overflow: visible;
+}
+
+.game-emotion-match .game-board {
+  height: auto;
+  min-height: 0;
+}
+
+.game-emotion-match .play-panel,
+.game-emotion-match .emotion-match-host {
+  overflow: visible;
+}
+
+.game-emotion-match .emotion-match {
+  /*
+   * Mỗi hàng lấy đúng chiều cao nội dung.
+   * Không dùng minmax(280px, 1fr), vì 1fr có thể co scene nhỏ hơn ảnh.
+   */
+  grid-template-rows: auto auto auto auto auto;
+  min-height: 0;
+  height: auto;
+  overflow: visible;
+}
+
+.game-emotion-match .emotion-match__scene {
+  min-height: 410px;
+  padding: 8px 0 16px;
+  overflow: visible;
+}
+
+.game-emotion-match .emotion-match__character-card {
+  /*
+   * Card phải cao hơn chiều cao tối đa của ảnh (360px)
+   * để dành chỗ cho bong bóng thoại.
+   */
+  width: min(470px, 100%);
+  height: 390px;
+  min-height: 390px;
+  place-items: end center;
+}
+
+.game-emotion-match .emotion-match__character {
+  width: 100%;
+  height: clamp(250px, 34vh, 330px);
+  max-height: calc(100% - 54px);
+}
+
+.game-emotion-match .emotion-match__character-image {
+  max-height: 100%;
+}
+
+.game-emotion-match .emotion-match__bubble {
+  z-index: 2;
+  top: 0;
+  right: 0;
+}
+
+.game-emotion-match .emotion-match__character-name {
+  z-index: 3;
+  bottom: 4px;
+}
+
+.game-emotion-match .emotion-match__choices {
+  position: relative;
+  z-index: 5;
+  align-items: stretch;
+}
+
+/*
+ * Nếu có 5 đáp án, đáp án cuối chiếm trọn hàng thứ hai
+ * thay vì tạo một ô nhỏ lệch về bên trái.
+ */
+.game-emotion-match .emotion-match__choice:last-child:nth-child(4n + 1) {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 1000px) {
+  .game-emotion-match .emotion-match__scene {
+    min-height: 370px;
+  }
+
+  .game-emotion-match .emotion-match__character-card {
+    height: 350px;
+    min-height: 350px;
+  }
+
+  .game-emotion-match .emotion-match__choices {
+    grid-template-columns: repeat(2, minmax(140px, 1fr));
+  }
+
+  .game-emotion-match .emotion-match__choice:last-child:nth-child(2n + 1) {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 700px) {
+  .game-emotion-match .emotion-match__scene {
+    min-height: 330px;
+    padding-bottom: 12px;
+  }
+
+  .game-emotion-match .emotion-match__character-card {
+    width: 100%;
+    height: 315px;
+    min-height: 315px;
+  }
+
+  .game-emotion-match .emotion-match__character {
+    height: 255px;
+    max-height: calc(100% - 50px);
+  }
+
+  .game-emotion-match .emotion-match__bubble {
+    right: 4px;
+    max-width: 72%;
+    padding: 10px 14px;
+  }
+
+  .game-emotion-match .emotion-match__choices {
+    grid-template-columns: 1fr;
+  }
+
+  .game-emotion-match .emotion-match__choice:last-child {
+    grid-column: auto;
+  }
+}
+
+/*
+ * Emotion Match — architecture/layout fix
+ * Đặt file này SAU style.css hiện tại.
+ *
+ * Bản sửa đưa Emotion Match về cùng cấu trúc với các game khác:
+ * .game-board = cột Pipi + cột game.
+ */
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background:
+    linear-gradient(
+      rgba(226, 249, 255, 0.14),
+      rgba(255, 250, 224, 0.12)
+    ),
+    url("../assets/background/back_ground1.png")
+      center / cover no-repeat;
+  background-color: #edf9ff;
+}
+
+.game-emotion-match,
+.game-emotion-match.shell {
+  width: min(1320px, calc(100% - 40px));
+  max-width: none;
+  min-height: 100vh;
+  min-height: 100dvh;
+  height: auto;
+  margin: 0 auto;
+  padding: 14px 0 24px;
+  overflow: visible;
+
+  /* Nền đã đặt trên body để không bị cắt theo chiều rộng của shell. */
+  background: transparent;
+}
+
+.game-emotion-match .topbar {
+  width: 100%;
+  margin-bottom: 14px;
+}
+
+.game-emotion-match .game-board {
+  position: relative;
+  width: 100%;
+  max-width: none;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+
+  display: grid;
+  grid-template-columns:
+    minmax(190px, var(--pipi-panel-width, 230px))
+    minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+
+/* Trả Pipi về luồng layout bình thường. */
+.game-emotion-match .game-board > .pipi-panel {
+  position: sticky;
+  z-index: 10;
+  top: 14px;
+  left: auto;
+
+  width: 100%;
+  min-width: 0;
+
+  transform: none;
+}
+
+.game-emotion-match .pipi-panel .pipi-frame {
+  width: 100%;
+  height: clamp(260px, 42vh, 390px);
+  min-height: 0;
+  overflow: hidden;
+}
+
+.game-emotion-match .pipi-panel .pipi-media {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.game-emotion-match .pipi-panel .speech {
+  min-height: 84px;
+  margin: 0;
+  padding: 14px 15px;
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.game-emotion-match .game-board > .play-panel {
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+}
+
+.game-emotion-match .emotion-match-host,
+.game-emotion-match .emotion-match {
+  width: 100%;
+  min-width: 0;
+}
+
+.game-emotion-match .emotion-match {
+  height: auto;
+  min-height: 0;
+  padding: 14px 18px 16px;
+  gap: 10px;
+  overflow: visible;
+  grid-template-rows: auto auto auto auto auto;
+}
+
+.game-emotion-match .emotion-match__scene {
+  min-height: 410px;
+  padding: 8px 0 16px;
+  overflow: visible;
+}
+
+.game-emotion-match .emotion-match__character-card {
+  width: min(470px, 100%);
+  height: 390px;
+  min-height: 390px;
+  place-items: end center;
+}
+
+.game-emotion-match .emotion-match__character {
+  width: 100%;
+  height: clamp(250px, 34vh, 330px);
+  max-height: calc(100% - 54px);
+}
+
+.game-emotion-match .emotion-match__character-image {
+  max-height: 100%;
+}
+
+.game-emotion-match .emotion-match__bubble {
+  z-index: 2;
+  top: 0;
+  right: 0;
+}
+
+.game-emotion-match .emotion-match__character-name {
+  z-index: 3;
+  bottom: 4px;
+}
+
+.game-emotion-match .emotion-match__choices {
+  position: relative;
+  z-index: 5;
+  grid-template-columns: repeat(4, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.game-emotion-match
+  .emotion-match__choice:last-child:nth-child(4n + 1) {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 1100px) {
+  .game-emotion-match,
+  .game-emotion-match.shell {
+    width: min(100% - 24px, 1040px);
+  }
+
+  .game-emotion-match .game-board {
+    grid-template-columns: 180px minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .game-emotion-match .pipi-panel .pipi-frame {
+    height: 260px;
+  }
+
+  .game-emotion-match .emotion-match__choices {
+    grid-template-columns: repeat(2, minmax(140px, 1fr));
+  }
+
+  .game-emotion-match
+    .emotion-match__choice:last-child:nth-child(2n + 1) {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 760px) {
+  body {
+    background-attachment: scroll;
+  }
+
+  .game-emotion-match,
+  .game-emotion-match.shell {
+    width: min(100% - 16px, 720px);
+    padding-top: 8px;
+  }
+
+  .game-emotion-match .game-board {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .game-emotion-match .game-board > .pipi-panel {
+    position: static;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 110px minmax(0, 1fr);
+  }
+
+  .game-emotion-match .pipi-panel .pipi-frame {
+    width: 110px;
+    height: 120px;
+  }
+
+  .game-emotion-match .pipi-panel .speech {
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    border-top: 4px solid #d9ecff;
+    font-size: 0.9rem;
+  }
+
+  .game-emotion-match .emotion-match {
+    padding: 12px;
+  }
+
+  .game-emotion-match .emotion-match__scene {
+    min-height: 330px;
+  }
+
+  .game-emotion-match .emotion-match__character-card {
+    height: 315px;
+    min-height: 315px;
+  }
+
+  .game-emotion-match .emotion-match__character {
+    height: 255px;
+    max-height: calc(100% - 50px);
+  }
+
+  .game-emotion-match .emotion-match__choices {
+    grid-template-columns: 1fr;
+  }
+
+  .game-emotion-match .emotion-match__choice:last-child {
+    grid-column: auto;
+  }
+}
+
+/* =========================================================
+   BACKGROUND SCALE — PHẢI NẰM CUỐI FILE
+   `cover` làm ảnh bị phóng và cắt; kích thước dưới đây thu ảnh
+   lại, giữ nguyên tỉ lệ và dùng màu nền để lấp phần còn trống.
+========================================================= */
+
+body {
+  background-image:
+    linear-gradient(
+      rgba(226, 249, 255, 0.1),
+      rgba(255, 250, 224, 0.08)
+    ),
+    url("../assets/background/back_ground1.png");
+  background-position: center top;
+  background-size:
+    100% 100%,
+    min(1600px, 92vw) auto;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-color: #edf9ff;
+}
+
+.game-emotion-match,
+.game-emotion-match.shell,
+.game-emotion-match .game-board,
+.game-emotion-match .play-panel {
+  background-image: none;
+}
+
+@media (max-width: 760px) {
+  body {
+    background-size:
+      100% 100%,
+      100% auto;
+  }
+}
+
+/* =========================================================
+   FINAL VIEWPORT FIT
+   Giữ toàn bộ câu hỏi, nhân vật và đáp án trong một màn hình
+   desktop phổ biến mà không làm nhân vật đè lên đáp án.
+========================================================= */
+
+body {
+  background-size:
+    100% 100%,
+    min(1500px, 88vw) auto;
+}
+
+.game-emotion-match,
+.game-emotion-match.shell {
+  padding-top: 10px;
+  padding-bottom: 18px;
+}
+
+.game-emotion-match .topbar {
+  min-height: 64px;
+  margin-bottom: 10px;
+}
+
+.game-emotion-match .emotion-match {
+  padding: 12px 16px 14px;
+  gap: 8px;
+}
+
+.game-emotion-match .emotion-match__header {
+  min-height: 0;
+  padding: 10px 18px;
+}
+
+.game-emotion-match .emotion-match__title {
+  font-size: clamp(2rem, 3vw, 2.8rem);
+}
+
+.game-emotion-match .emotion-match__instruction {
+  margin-top: 4px;
+}
+
+.game-emotion-match .emotion-match__sound {
+  width: 52px;
+  height: 52px;
+}
+
+.game-emotion-match .emotion-match__hud {
+  min-height: 38px;
+}
+
+.game-emotion-match .emotion-match__hud span {
+  padding: 6px 14px;
+}
+
+.game-emotion-match .emotion-match__scene {
+  min-height: 310px;
+  padding: 4px 0 10px;
+}
+
+.game-emotion-match .emotion-match__character-card {
+  height: 300px;
+  min-height: 300px;
+}
+
+.game-emotion-match .emotion-match__character {
+  height: clamp(225px, 29vh, 270px);
+  max-height: calc(100% - 48px);
+}
+
+.game-emotion-match .emotion-match__bubble {
+  padding: 10px 14px;
+}
+
+.game-emotion-match .emotion-match__choice {
+  min-height: 66px;
+  padding: 8px 12px;
+}
+
+.game-emotion-match .emotion-match__feedback {
+  min-height: 24px;
+}
+
+.game-emotion-match .pipi-panel .pipi-frame {
+  height: clamp(250px, 37vh, 340px);
+}
+
+@media (max-height: 800px) and (min-width: 761px) {
+  .game-emotion-match .emotion-match__scene {
+    min-height: 270px;
+  }
+
+  .game-emotion-match .emotion-match__character-card {
+    height: 260px;
+    min-height: 260px;
+  }
+
+  .game-emotion-match .emotion-match__character {
+    height: 225px;
+  }
+}
+
+@media (max-width: 760px) {
+  body {
+    background-size:
+      100% 100%,
+      100% auto;
+  }
+
+  .game-emotion-match .emotion-match__scene {
+    min-height: 300px;
+  }
+
+  .game-emotion-match .emotion-match__character-card {
+    height: 290px;
+    min-height: 290px;
+  }
+}
+
+/* =========================================================
+   STAGE + ANSWER PANEL
+   Background/model ở khung trên; đáp án ở khung riêng bên dưới.
+========================================================= */
+
+body {
+  background:
+    radial-gradient(circle at 12% 15%, #fff4b8 0 9rem, transparent 9.2rem),
+    radial-gradient(circle at 88% 22%, #bff3ff 0 8rem, transparent 8.2rem),
+    linear-gradient(135deg, #f8fdff 0%, #e9f7ff 48%, #fff7dc 100%);
+  background-attachment: scroll;
+}
+
+.game-emotion-match .emotion-match {
+  display: grid;
+  grid-template-rows: auto auto auto;
+  gap: 12px;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.game-emotion-match .emotion-match__stage {
+  position: relative;
+  min-height: 500px;
+  overflow: hidden;
+  border: 4px solid #d9ecff;
+  border-radius: 10px;
+  background-color: #eefaff;
+  background-position: center;
+  /*
+   * Background phủ kín toàn bộ khung thao tác.
+   * Chỉ ảnh nền dùng cover; model bên trong vẫn dùng contain.
+   */
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-shadow: 0 8px 0 #c8def8;
+}
+
+.game-emotion-match
+  .emotion-match.has-custom-background
+  .emotion-match__stage {
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0.08)
+    ),
+    var(--emotion-background);
+  background-position: center center;
+  background-size:
+    100% 100%,
+    cover;
+  background-repeat: no-repeat;
+}
+
+.game-emotion-match .emotion-match__hud {
+  position: absolute;
+  z-index: 6;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+}
+
+.game-emotion-match .emotion-match__scene {
+  min-height: 492px;
+  height: 492px;
+  padding: 64px 20px 16px;
+  overflow: hidden;
+}
+
+.game-emotion-match .emotion-match__character-card {
+  width: min(470px, 100%);
+  height: 410px;
+  min-height: 410px;
+}
+
+.game-emotion-match .emotion-match__character {
+  width: 100%;
+  height: 360px;
+  max-height: 360px;
+  transform: translateY(-18px);
+}
+
+.game-emotion-match .emotion-match__character-image {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+.game-emotion-match .emotion-match__bubble {
+  top: 0;
+  right: 0;
+}
+
+.game-emotion-match .emotion-match__character-name {
+  bottom: 22px;
+}
+
+.game-emotion-match .emotion-match__answer-panel {
+  position: relative;
+  z-index: 8;
+  padding: 14px;
+  border: 4px solid #d9ecff;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 8px 0 #c8def8;
+}
+
+.game-emotion-match .emotion-match__choices {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(130px, 1fr));
+  gap: 12px;
+}
+
+.game-emotion-match
+  .emotion-match__choice:last-child:nth-child(4n + 1),
+.game-emotion-match
+  .emotion-match__choice:last-child:nth-child(2n + 1) {
+  grid-column: auto;
+}
+
+.game-emotion-match .emotion-match__feedback {
+  min-height: 28px;
+  margin-top: 8px;
+}
+
+.game-emotion-match .emotion-match__completion-actions {
+  display: flex;
+  justify-content: center;
+  min-height: 0;
+}
+
+.game-emotion-match .emotion-match__completion-actions:empty {
+  display: none;
+}
+
+.game-emotion-match .emotion-match__replay {
+  min-width: 170px;
+  margin-top: 8px;
+}
+
+@media (max-width: 1200px) {
+  .game-emotion-match .emotion-match__choices {
+    grid-template-columns: repeat(3, minmax(130px, 1fr));
+  }
+
+  .game-emotion-match
+    .emotion-match__choice:last-child:nth-child(3n + 2) {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 900px) {
+  .game-emotion-match .emotion-match__stage {
+    min-height: 440px;
+  }
+
+  .game-emotion-match .emotion-match__scene {
+    min-height: 432px;
+    height: 432px;
+  }
+
+  .game-emotion-match .emotion-match__character-card {
+    height: 350px;
+    min-height: 350px;
+  }
+
+  .game-emotion-match .emotion-match__character {
+    height: 305px;
+    max-height: 305px;
+  }
+}
+
+@media (max-width: 700px) {
+  .game-emotion-match .emotion-match__stage {
+    min-height: 390px;
+    background-size: cover;
+  }
+
+  .game-emotion-match .emotion-match__scene {
+    min-height: 382px;
+    height: 382px;
+    padding: 60px 8px 12px;
+  }
+
+  .game-emotion-match .emotion-match__character-card {
+    height: 310px;
+    min-height: 310px;
+  }
+
+  .game-emotion-match .emotion-match__character {
+    height: 270px;
+    max-height: 270px;
+    transform: translateY(-10px);
+  }
+
+  .game-emotion-match .emotion-match__character-name {
+    bottom: 14px;
+  }
+
+  .game-emotion-match .emotion-match__choices {
+    grid-template-columns: 1fr;
+  }
+
+  .game-emotion-match .emotion-match__choice {
+    grid-column: auto !important;
+  }
+}

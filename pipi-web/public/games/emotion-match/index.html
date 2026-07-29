@@ -1,0 +1,223 @@
+
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Pipi - Emotion Match</title>
+
+  <link rel="stylesheet" href="../shared/base.css">
+  <link rel="stylesheet" href="../shared/pipi.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <main class="shell game-shell game-emotion-match">
+    <header class="topbar">
+      <a class="brand" href="../index.html" aria-label="Về trang chọn game">
+        <img src="../assets/png/hello.gif" alt="Pipi">
+        <span>Pipi Mini Games</span>
+      </a>
+
+      <a class="home-link" href="../index.html">
+        Trang chọn game
+      </a>
+    </header>
+
+    <section class="game-board">
+      <aside class="pipi-panel" data-pipi-panel>
+        <button
+          class="pipi-button pipi-frame"
+          data-pipi-button
+          data-pipi-frame
+          type="button"
+          aria-label="Chạm Pipi"
+        >
+          <img
+            class="pipi-media"
+            data-pipi-img
+            src="../assets/png/hello.gif"
+            alt="Pipi"
+          >
+        </button>
+
+        <p class="speech" data-pipi-speech>
+          Quan sát nhân vật và chọn trạng thái phù hợp nhé.
+        </p>
+      </aside>
+
+      <section class="play-panel">
+        <div id="emotion-game"></div>
+      </section>
+    </section>
+  </main>
+
+  <script src="../shared/audio.js"></script>
+  <script src="../shared/pipi.js"></script>
+  <script src="../shared/utils.js"></script>
+  <script src="../shared/game-runtime.js"></script>
+  <script src="game.js"></script>
+
+  <script>
+    (function () {
+      "use strict";
+
+      const mountPoint = document.querySelector("#emotion-game");
+
+      const pipiFallback = {
+        say(message) {
+          console.log("[Pipi]", message);
+        },
+
+        celebrate(message) {
+          console.log("[Pipi]", message || "Tuyệt vời!");
+        }
+      };
+
+      const pipi =
+        window.PipiMascot &&
+        typeof window.PipiMascot.create === "function"
+          ? window.PipiMascot.create({
+              root: document,
+              assetBase: "../"
+            })
+          : pipiFallback;
+
+      if (
+        window.PipiGames &&
+        window.PipiGames.emotionMatch &&
+        typeof window.PipiGames.emotionMatch.mount === "function"
+      ) {
+        window.PipiGames.emotionMatch.mount(
+          mountPoint,
+          {
+            id: "emotion-match-demo",
+            title: "How are you?",
+            instruction:
+              "Quan sát nhân vật và chọn trạng thái phù hợp.",
+
+            /*
+             * Ảnh này chỉ hiển thị trong khung nhân vật.
+             * Phần trả lời nằm trong một div riêng bên dưới.
+             */
+            background: "../assets/background/back_ground1.png",
+
+            rounds: [
+              {
+                id: "happy",
+                characterName: "Mia",
+                image: "../assets/models/im_happy.png",
+                fallbackEmoji: "😄",
+                prompt: "How is Mia?",
+                answer: "happy"
+              },
+              {
+                id: "sad",
+                characterName: "Ben",
+                image: "../assets/models/im_sad.png",
+                fallbackEmoji: "😢",
+                prompt: "How is Ben?",
+                answer: "sad"
+              },
+              {
+                id: "sleepy",
+                characterName: "Lily",
+                image: "../assets/models/im_sleepy.png",
+                fallbackEmoji: "😴",
+                prompt: "How is Lily?",
+                answer: "sleepy"
+              },
+              {
+                id: "great",
+                characterName: "Tom",
+                image: "../assets/models/im_great.png",
+                fallbackEmoji: "🤩",
+                prompt: "How is Tom?",
+                answer: "great"
+              },
+              {
+                id: "good",
+                characterName: "Anna",
+                image: "../assets/models/im_good.png",
+                fallbackEmoji: "🙂",
+                prompt: "How is Anna?",
+                answer: "good"
+              }
+            ],
+
+            choices: [
+              {
+                id: "great",
+                label: "I'm great.",
+                emoji: "🤩"
+              },
+              {
+                id: "good",
+                label: "I'm good.",
+                emoji: "🙂"
+              },
+              {
+                id: "happy",
+                label: "I'm happy.",
+                emoji: "😊"
+              },
+              {
+                id: "sad",
+                label: "I'm sad.",
+                emoji: "😢"
+              },
+              {
+                id: "sleepy",
+                label: "I'm sleepy.",
+                emoji: "😴"
+              }
+            ],
+
+            shuffleChoices: true,
+            autoNextDelay: 1000
+          },
+          {
+            pipi,
+
+            onStart(event) {
+              console.log("Emotion Match started:", event);
+            },
+
+            onStateChange(event) {
+              console.log("Emotion Match state:", event);
+            },
+
+            onScoreChange(event) {
+              console.log("Emotion Match score:", event);
+            },
+
+            onAnswer(event) {
+              console.log("Emotion Match answer:", event);
+            },
+
+            onInteraction(event) {
+              console.log("Emotion Match interaction:", event);
+            },
+
+            onComplete(result) {
+              console.log("Emotion Match completed:", result);
+            }
+          }
+        );
+      } else {
+        mountPoint.innerHTML = `
+          <div class="emotion-load-error">
+            <strong>Không thể tải Emotion Match.</strong>
+            <span>Kiểm tra lại đường dẫn file game.js.</span>
+          </div>
+        `;
+
+        console.error(
+          "Không tìm thấy window.PipiGames.emotionMatch.mount()"
+        );
+      }
+    })();
+  </script>
+</body>
+</html>
