@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "odlGpHY0cOM=",
+  "success": true,
+  "projectFilePath": "D:\\PipiProject\\PipiApi\\PipiApi.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.15\\microsoft.aspnetcore.openapi.9.0.15.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}
