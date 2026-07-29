@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PipiApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+368775eed98acae20e0a8e432250dd5d1ac2e919")]
 [assembly: System.Reflection.AssemblyProductAttribute("PipiApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PipiApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
